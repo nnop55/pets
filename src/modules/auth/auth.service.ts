@@ -31,7 +31,7 @@ export class AuthService {
     const hashedPassword = await hashPassword(password);
 
     const exists = await this.validateUser(email, password);
-    
+
     if (exists) {
       throw new BadRequestException('User already registered with this email');
     }
@@ -45,8 +45,13 @@ export class AuthService {
     return await this.usersRepository.save(user);
   }
 
+  async logout(email: string) {
+    return { email: email, access_token: null };
+  }
+
   async login(user: LoginUserDto) {
-    const payload = { email: user.email, sub: (user as any).id };
+    console.log(user)
+    const payload = { email: user.email };
     return {
       accessToken: this.jwtService.sign(payload),
     };
