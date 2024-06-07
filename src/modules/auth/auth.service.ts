@@ -46,14 +46,19 @@ export class AuthService {
   }
 
   async logout(email: string) {
-    return { email: email, access_token: null };
+    await this.userService.updateUserToken(email, null);
+
+    return { email: email, accessToken: null };
   }
 
   async login(user: LoginUserDto) {
-    console.log(user)
     const payload = { email: user.email };
+    const accessToken = this.jwtService.sign(payload);
+
+    await this.userService.updateUserToken(user.email, accessToken);
+
     return {
-      accessToken: this.jwtService.sign(payload),
+      accessToken,
     };
   }
 }

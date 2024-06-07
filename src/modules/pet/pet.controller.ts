@@ -34,7 +34,7 @@ export class PetController {
     return this.petService.insert(body);
   }
 
-  @Delete()
+  @Delete(':id')
   deleteOne(@Param('id', ParseIntPipe) id: FindOneOptions<Pet>) {
     return this.petService.deleteOne(id);
   }

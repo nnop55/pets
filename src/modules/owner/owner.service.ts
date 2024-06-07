@@ -31,7 +31,9 @@ export class OwnerService {
   async deleteOne(id: FindOneOptions<Owner>) {
     const result = await this.ownersRepository.delete(id as number);
     if (result.affected === 0) {
-      throw new NotFoundException(`owner with ID ${id} not found`);
+      throw new NotFoundException(`Owner with ID ${id} not found`);
     }
+
+    return { message: 'Successfully deleted' };
   }
 }

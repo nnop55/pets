@@ -34,7 +34,7 @@ export class OwnerController {
     return this.ownerService.insert(body);
   }
 
-  @Delete()
+  @Delete(':id')
   deleteOne(@Param('id', ParseIntPipe) id: FindOneOptions<Owner>) {
     return this.ownerService.deleteOne(id);
   }

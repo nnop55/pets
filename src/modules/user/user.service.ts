@@ -17,4 +17,8 @@ export class UserService {
 
     return user;
   }
+
+  async updateUserToken(email: string, accessToken: string): Promise<void> {
+    await this.usersRepository.update({ email }, { accessToken });
+  }
 }

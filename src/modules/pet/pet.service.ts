@@ -33,5 +33,7 @@ export class PetService {
     if (result.affected === 0) {
       throw new NotFoundException(`Pet with ID ${id} not found`);
     }
+
+    return { message: 'Successfully deleted' };
   }
 }
